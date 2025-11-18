@@ -25,14 +25,24 @@ add_executable(server)
 
 target_sources(${PROJECT_NAME}
     PRIVATE
+        src/connection.cpp
+        src/response.cpp
         src/request_parser.cpp
+        src/request_handler.cpp
+        src/server.cpp
     PUBLIC 
         FILE_SET HEADERS
         BASE_DIRS
             ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_link_libraries(${PROJECT_NAME} asio)
+set_target_properties(
+    ${PROJECT_NAME}
+    PROPERTIES
+    CXX_STANDARD 23
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE asio cx)
 
 target_sources(server
     PRIVATE
