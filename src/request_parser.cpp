@@ -8,7 +8,7 @@ using http::RequestParser;
 
 namespace {
 
-bool is_control_character(int c) { return (c >= 0 && c <= 32) || (c == 127); }
+bool is_control_character(int c) { return (c >= 0 && c < 32) || (c == 127); }
 
 bool is_special(char c) {
     static constexpr std::string_view specials_table{"(){}[]<>@,\";:\\/?= \t"};
